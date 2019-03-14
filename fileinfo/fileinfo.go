@@ -4,11 +4,16 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"path/filepath"
 )
 
 func main() {
 	filename := os.Args[1]
 	file, err := os.Lstat(filename)
+	if err != nil {
+		log.Fatal(err)
+	}
+	absPath, err := filepath.Abs(filename)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -35,13 +40,14 @@ func main() {
 	}
 	isSymbolicLink := fileMode&os.ModeSymlink != 0
 
-	fmt.Printf("filesize: %d bytes, %d KiB, %d MiB, %d GiB\n", fileSizeB, fileSizeKiB, fileSizeMiB, fileSizeGiB)
+	fmt.Printf("Information about %s:\n", absPath)
+	fmt.Printf("Size: %d bytes, %d KiB, %d MiB, %d GiB\n", fileSizeB, fileSizeKiB, fileSizeMiB, fileSizeGiB)
 	fmt.Println("IS Dir ", isDir)
 	fmt.Println("Is Reg ", isReg)
-	fmt.Println("Uinx code ", permissionBits)
-	fmt.Println("is append only: ", isAppendOnly)
-	fmt.Println("is device file: ", isDevice)
-	fmt.Println("is Unix character device: ", isUnixChar)
-	fmt.Println("is Unix block device", isUnixBloc)
-	fmt.Println("is symbolic link", isSymbolicLink)
+	fmt.Println("Unix permission bits: ", permissionBits)
+	fmt.Println("Is append only: ", isAppendOnly)
+	fmt.Println("Is device file: ", isDevice)
+	fmt.Println("Is Unix character device: ", isUnixChar)
+	fmt.Println("Is Unix block device", isUnixBloc)
+	fmt.Println("Is symbolic link", isSymbolicLink)
 }
