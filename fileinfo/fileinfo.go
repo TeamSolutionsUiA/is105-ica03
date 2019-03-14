@@ -17,12 +17,13 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fileMode := file.Mode()
 	fileSize := file.Size()
 	fileSizeB := fileSize / 8
 	fileSizeKiB := fileSizeB / 1024
 	fileSizeMiB := fileSizeKiB / 1024
 	fileSizeGiB := fileSizeMiB / 1024
+
+	fileMode := file.Mode()
 	isDir := fileMode.IsDir()
 	isReg := fileMode.IsRegular()
 	permissionBits := fileMode.Perm()
