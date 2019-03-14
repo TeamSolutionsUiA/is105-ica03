@@ -9,7 +9,6 @@ import (
 
 func linjeTeller() {
 
-	
 	linjeTeller := 0
 
 	// Åpner filen som vi ønsker å telle linjer i.
@@ -30,5 +29,5 @@ func linjeTeller() {
 // Trenger en funksjon for å telle antall ord (eller runes) i tekst-dokumentet.
 
 func runeTeller() {
-	
+
 }
