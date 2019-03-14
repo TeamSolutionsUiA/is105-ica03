@@ -1,4 +1,4 @@
-package main
+package frequence
 
 import (
 	"bufio"
@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-func main() {
+func linjeTeller() {
 
 	// Åpner og leser fra fil.
 	linjeTeller := 0
@@ -22,5 +22,5 @@ func main() {
 		linjeTeller++
 
 	}
-	fmt.Println(linjeTeller)
+	fmt.Println("Filen inneholder", linjeTeller, "linjer")
 }
