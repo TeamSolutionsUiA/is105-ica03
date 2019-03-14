@@ -9,25 +9,44 @@ import (
 
 func linjeTeller() {
 
+	// Åpner og leser fra fil.
 	linjeTeller := 0
 
-	// Åpner filen som vi ønsker å telle linjer i.
 	fil, err := os.Open("../../files/pg100.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
-	// Lager en scanner som kan finne linjeskift i teksten og telle dem.
+	//buffer := bufio.NewReader(fil)
 	scanner := bufio.NewScanner(fil)
 	for scanner.Scan() {
 		linjeTeller++
 
 	}
-	// Printe ut resultatet.
 	fmt.Println("Filen inneholder", linjeTeller, "linjer")
 }
 
-// Trenger en funksjon for å telle antall ord (eller runes) i tekst-dokumentet.
-
 func runeTeller() {
+	// Hente inn tekstfilen som runer i en array-buffer.
+	fil, err := os.Open("../../files/pg100.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	textArray := bufio.NewScanner(fil)
+	textArray.Split(bufio.ScanRunes)
+	var alfaArray [0]string
+	var tellerArray [0]int
+	teller := 0
 
+	for n := 0; len(textArray) < n; n++ {
+		for b := 0; len(alfaArray) < b; b++ {
+			if textArray[n] == alfaArray[b] {
+				tellerArray[b]++
+			} else {
+				alfaArray[teller] = textArray[n]
+				tellerArray[teller]++
+				teller++
+			}
+		}
+	}
+	return alfaArray
 }
