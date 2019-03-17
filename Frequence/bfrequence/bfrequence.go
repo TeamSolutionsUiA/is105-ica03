@@ -33,20 +33,22 @@ func runeTeller() {
 	}
 	textArray := bufio.NewScanner(fil)
 	textArray.Split(bufio.ScanRunes)
-	var alfaArray [0]string
-	var tellerArray [0]int
+	var alfaArray []string
+	var tellerArray []int
 	teller := 0
 
-	for n := 0; len(textArray) < n; n++ {
+	for textArray.Scan() {
+	
 		for b := 0; len(alfaArray) < b; b++ {
-			if textArray[n] == alfaArray[b] {
+			if textArray.Text() == alfaArray[b] {
 				tellerArray[b]++
 			} else {
-				alfaArray[teller] = textArray[n]
+				alfaArray[teller] = textArray.Text()
 				tellerArray[teller]++
 				teller++
 			}
 		}
 	}
-	return alfaArray
+
+
 }
