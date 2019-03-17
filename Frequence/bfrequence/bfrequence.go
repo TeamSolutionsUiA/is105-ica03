@@ -1,4 +1,4 @@
-package frequence
+package bfrequence
 
 import (
 	"bufio"
@@ -25,7 +25,7 @@ func linjeTeller() {
 	fmt.Println("Filen inneholder", linjeTeller, "linjer")
 }
 
-func runeTeller() {
+func RuneTeller() {
 	// Hente inn tekstfilen som runer i en array-buffer.
 	fil, err := os.Open("../../files/pg100.txt")
 	if err != nil {
@@ -50,5 +50,5 @@ func runeTeller() {
 		}
 	}
 
-
+fmt.Println(alfaArray)
 }
