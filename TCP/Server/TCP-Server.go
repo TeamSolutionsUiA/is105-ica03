@@ -1,9 +1,18 @@
 package main
 
-import "net"
+import (
+	"encoding/json"
+	"log"
+	"net"
+)
 
 func handler(c net.Conn) {
-	c.Write([]byte("ok"))
+	info := Info{"Are", "arefjerm@gmail.com"}
+	infoJSON, err := json.Marshal(info)
+	if err != nil {
+		log.Fatal(err)
+	}
+	c.Write([]byte(infoJSON))
 	c.Close()
 }
 func main() {
@@ -18,4 +27,9 @@ func main() {
 		}
 		go handler(c)
 	}
+}
+
+type Info struct {
+	Navn  string
+	Epost string
 }
