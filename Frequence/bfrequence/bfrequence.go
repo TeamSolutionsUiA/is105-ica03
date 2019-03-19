@@ -9,12 +9,14 @@ import (
 	"unicode"
 )
 
+const textFil = "../Frequence/testtekst.txt"
+
 func LinjeTeller() {
 
 	// Åpner og leser fra fil.
 	linjeTeller := 0
 
-	fil, err := os.Open("../Frequence/testtekst.txt")
+	fil, err := os.Open(textFil)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -28,15 +30,24 @@ func LinjeTeller() {
 }
 
 func RuneTeller() {
+
 	// Hente inn tekstfilen som runer i en array-buffer.
-	tekstFil, err := os.Open("../Frequence/testtekst.txt")
+	fil, err := os.Open(textFil)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	bs := bufio.new()(tekstFil)
+	bufferedReader := bufio.NewReader(fil)
+
+	byteSlice := make([]byte, 5)
+	byteSlice, err = bufferedReader.Read()
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	m := make(map[rune]int)
-	for _, r := range bs {
+
+	for _, r := range string(byteSlice) {
 		m[r]++
 	}
 	// answer is now in m.  sort and format output:

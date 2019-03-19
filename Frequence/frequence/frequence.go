@@ -9,12 +9,28 @@ import (
 
 const textFil = "../Frequence/testtekst.txt"
 
+func LinjeTeller() {
+
+	// Åpner og leser linjer fra fil.
+	fil, err := ioutil.ReadFile(textFil)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	linjeTeller := 0
+	for t := 0; t < len(fil); t++ {
+
+	}
+
+}
+
 func RuneTeller() {
 	// Hente inn tekstfilen som runer i en array-buffer.
 	bs, err := ioutil.ReadFile(textFil)
 	if err != nil {
 		fmt.Println(err)
 		return
+
 	}
 	m := make(map[rune]int)
 	for _, r := range string(bs) {
