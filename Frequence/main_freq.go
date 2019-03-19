@@ -1,8 +1,8 @@
 package main
 
-import "github.com/jostola/TeamS/Frequence/bfrequence"
+import "github.com/TeamSolutionsUiA/is105-ica03/Frequence/frequence"
 
 func main() {
 
-	bfrequence.RuneTeller()
+	frequence.LinjeTeller()
 }

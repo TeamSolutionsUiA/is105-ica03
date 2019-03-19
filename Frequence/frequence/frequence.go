@@ -15,28 +15,36 @@ func LinjeTeller() {
 	fil, err := ioutil.ReadFile(textFil)
 	if err != nil {
 		fmt.Println(err)
-		return
-	}
-	linjeTeller := 0
-	for t := 0; t < len(fil); t++ {
 
 	}
+	// Linjeteller som begynner på 1 og teller for hvert linjeskift.
+	linjeTeller := 1
 
+	for i := 0; i < len(fil); i++ {
+		currentByte := fmt.Sprintf("%X", fil[i])
+		if currentByte == "A" {
+			linjeTeller++
+		}
+
+	}
+	fmt.Println("Filen inneholder", linjeTeller, "linjer")
 }
 
 func RuneTeller() {
-	// Hente inn tekstfilen som runer i en array-buffer.
+	// Leser fra fil
 	bs, err := ioutil.ReadFile(textFil)
 	if err != nil {
 		fmt.Println(err)
 		return
 
 	}
+	// Oppretter en map og legger inn alle runer fra teksten. Plusser på int verdien hver
+	// gang en rune blir lagt inn i "map".
 	m := make(map[rune]int)
 	for _, r := range string(bs) {
 		m[r]++
 	}
-	// answer is now in m.  sort and format output:
+	// Svaret er nå i m.  Sortering og formattering av output:
 	lfs := make(lfList, 0, len(m))
 	for l, f := range m {
 		lfs = append(lfs, &letterFreq{l, f})
@@ -58,14 +66,19 @@ func RuneTeller() {
 	}
 }
 
+// Lager en struct for en rune med en nummerverdi.
 type letterFreq struct {
 	rune
 	freq int
 }
+
+// Lager en liste basert på typen "letterFreq"
 type lfList []*letterFreq
 
+// Funksjon for å returnere lengde.
 func (lfs lfList) Len() int { return len(lfs) }
 
+// Sammenligne størrelsen på to runer.
 func (lfs lfList) Less(i, j int) bool {
 	switch fd := lfs[i].freq - lfs[j].freq; {
 	case fd < 0:
@@ -75,6 +88,8 @@ func (lfs lfList) Less(i, j int) bool {
 	}
 	return lfs[i].rune < lfs[j].rune
 }
+
+// Bytter rundt på rekkefølgen i listen.
 func (lfs lfList) Swap(i, j int) {
 	lfs[i], lfs[j] = lfs[j], lfs[i]
 }
