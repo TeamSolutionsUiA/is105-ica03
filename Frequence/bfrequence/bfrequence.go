@@ -11,9 +11,9 @@ import (
 
 const textFil = "../Frequence/testtekst.txt"
 
-func LinjeTeller() {
+func BufLinjeTeller() {
 
-	// Åpner og leser fra fil.
+	// Åpner og leser fra fil.¢
 	linjeTeller := 0
 
 	fil, err := os.Open(textFil)
@@ -29,7 +29,7 @@ func LinjeTeller() {
 	fmt.Println("Filen inneholder", linjeTeller, "linjer")
 }
 
-func RuneTeller() {
+func BufRuneTeller() {
 
 	// Hente inn tekstfilen som runer i en array-buffer.
 	fil, err := os.Open(textFil)
@@ -37,17 +37,10 @@ func RuneTeller() {
 		log.Fatal(err)
 	}
 
-	bufferedReader := bufio.NewReader(fil)
-
-	byteSlice := make([]byte, 5)
-	byteSlice, err = bufferedReader.Read()
-	if err != nil {
-		log.Fatal(err)
-	}
+	scanner := bufio.NewScanner(fil)
 
 	m := make(map[rune]int)
-
-	for _, r := range string(byteSlice) {
+	for _, r := range string(lines) {
 		m[r]++
 	}
 	// answer is now in m.  sort and format output:

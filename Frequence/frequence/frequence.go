@@ -7,7 +7,7 @@ import (
 	"unicode"
 )
 
-const textFil = "../Frequence/testtekst.txt"
+const textFil = "../files/pg100.txt"
 
 func LinjeTeller() {
 
@@ -38,22 +38,22 @@ func RuneTeller() {
 		return
 
 	}
-	// Oppretter en map og legger inn alle runer fra teksten. Plusser på int verdien hver
-	// gang en rune blir lagt inn i "map".
+	// Oppretter en map og legger inn alle runer fra teksten. Plusser på intverdien hver
+	// gang en rune blir lagt inn i "map" på samme nøkkel og øker denne hver gang samme rune kommer igjen .
 	m := make(map[rune]int)
 	for _, r := range string(bs) {
 		m[r]++
 	}
-	// Svaret er nå i m.  Sortering og formattering av output:
+	// Svaret er nå i m.  Sortering og formattering av output ved å lage en liste.
 	lfs := make(lfList, 0, len(m))
 	for l, f := range m {
 		lfs = append(lfs, &letterFreq{l, f})
 	}
 	sort.Sort(lfs)
-	fmt.Println("rune frequency")
+	fmt.Println("Antall runer totalt og frekvens for de 5 største:")
 	teller := 0
 	for _, lf := range lfs {
-		if teller >= 5 {
+		if teller == 6 {
 			break
 		}
 		if unicode.IsGraphic(lf.rune) {
