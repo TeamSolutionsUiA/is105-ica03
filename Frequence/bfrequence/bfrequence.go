@@ -6,7 +6,6 @@ import (
 	"log"
 	"os"
 	"sort"
-	"unicode"
 )
 
 const textFil = "../files/pg100.txt"
@@ -64,15 +63,6 @@ func RuneTeller() {
 		teller++
 	}
 
-}
-
-func hasRune(str string) bool {
-	for _, letter := range str {
-		if unicode.IsGraphic(letter) {
-			return true
-		}
-	}
-	return false
 }
 
 type letterFreq struct {
