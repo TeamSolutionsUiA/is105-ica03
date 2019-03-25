@@ -16,6 +16,6 @@ func main() {
 
 	fmt.Println("bfrequence test: ")
 
-	bfrequence.BufLinjeTeller()
-	bfrequence.BufRuneTeller()
+	bfrequence.LinjeTeller()
+	bfrequence.RuneTeller()
 }

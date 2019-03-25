@@ -11,7 +11,7 @@ import (
 
 const textFil = "../files/pg100.txt"
 
-func BufLinjeTeller() {
+func LinjeTeller() {
 
 	// Åpner og leser fra fil.¢
 	linjeTeller := 1
@@ -29,7 +29,7 @@ func BufLinjeTeller() {
 	fmt.Println("Filen inneholder", linjeTeller, "linjer")
 }
 
-func BufRuneTeller() {
+func RuneTeller() {
 
 	// Hente inn tekstfilen som runer i en array-buffer.
 	fil, err := os.Open(textFil)
