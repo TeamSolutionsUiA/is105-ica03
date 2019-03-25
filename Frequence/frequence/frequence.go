@@ -50,10 +50,10 @@ func RuneTeller() {
 		lfs = append(lfs, &letterFreq{l, f})
 	}
 	sort.Sort(lfs)
-	fmt.Println("Antall runer totalt og frekvens for de 5 største:")
+	fmt.Println("Presentasjon av de 5 mest brukte runene i teksten:")
 	teller := 0
 	for _, lf := range lfs {
-		if teller == 6 {
+		if teller >= 5 {
 			break
 		}
 		if unicode.IsGraphic(lf.rune) {

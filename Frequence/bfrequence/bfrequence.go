@@ -9,12 +9,12 @@ import (
 	"unicode"
 )
 
-const textFil = "../Frequence/testtekst.txt"
+const textFil = "../files/pg100.txt"
 
 func BufLinjeTeller() {
 
 	// Åpner og leser fra fil.¢
-	linjeTeller := 0
+	linjeTeller := 1
 
 	fil, err := os.Open(textFil)
 	if err != nil {
@@ -38,9 +38,13 @@ func BufRuneTeller() {
 	}
 
 	scanner := bufio.NewScanner(fil)
+	scanner.Split(bufio.ScanRunes)
 
-	m := make(map[rune]int)
-	for _, r := range string(lines) {
+	m := make(map[string]int)
+	for scanner.Scan() {
+
+		r := scanner.Text()
+
 		m[r]++
 	}
 	// answer is now in m.  sort and format output:
@@ -49,24 +53,30 @@ func BufRuneTeller() {
 		lfs = append(lfs, &letterFreq{l, f})
 	}
 	sort.Sort(lfs)
-	fmt.Println("rune frequency")
+	fmt.Println("Presentasjon av de 5 mest brukte runene i teksten:")
 	teller := 0
 	for _, lf := range lfs {
 		if teller >= 5 {
 			break
 		}
-		if unicode.IsGraphic(lf.rune) {
-			fmt.Printf("   %c    %7d\n", lf.rune, lf.freq)
 
-		} else {
-			fmt.Printf("%U  %7d\n", lf.rune, lf.freq)
-		}
+		fmt.Printf("   %+v    %7d\n", lf.string, lf.freq)
 		teller++
 	}
+
+}
+
+func hasRune(str string) bool {
+	for _, letter := range str {
+		if unicode.IsGraphic(letter) {
+			return true
+		}
+	}
+	return false
 }
 
 type letterFreq struct {
-	rune
+	string
 	freq int
 }
 type lfList []*letterFreq
@@ -80,7 +90,7 @@ func (lfs lfList) Less(i, j int) bool {
 	case fd > 0:
 		return true
 	}
-	return lfs[i].rune < lfs[j].rune
+	return lfs[i].string < lfs[j].string
 }
 func (lfs lfList) Swap(i, j int) {
 	lfs[i], lfs[j] = lfs[j], lfs[i]
