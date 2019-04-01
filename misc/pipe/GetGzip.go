@@ -24,7 +24,8 @@ func GetGzipped(expression string) string {
 
 	}
 
-	returnString = fmt.Sprintf("%X", gz.Header)
+	//returnString = fmt.Sprintf("%X", gz.Header)
+	returnString = fmt.Sprintf("%X", b)
 	return returnString
 
 }
