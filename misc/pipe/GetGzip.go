@@ -13,7 +13,7 @@ func GetGzipped(expression string) string {
 	// https://stackoverflow.com/questions/19197874/how-can-i-use-gzip-on-a-string-in-golang
 	var b bytes.Buffer
 	gz := gzip.NewWriter(&b)
-	if _, err := gz.Write([]byte("returnString")); err != nil {
+	if _, err := gz.Write([]byte(returnString)); err != nil {
 		log.Fatal(err)
 	}
 	if err := gz.Flush(); err != nil {
