@@ -2,7 +2,7 @@ package bfrequence
 
 import (
 	"testing"
-	"time"
+	
 )
 
 // https://golang.org/doc/effective_go.html#init
@@ -24,7 +24,7 @@ func benchmarkBRuneT(i int, b *testing.B) {
 	for j := 0; j < b.N; j++ {
 		b.StopTimer()
 		b.StartTimer()
-		BufRuneTeller()
+		RuneTeller()
 	}
 }
 
@@ -47,7 +47,7 @@ func  benchBufLinjeTeller(i int, b *testing.B) {
 	for j := 0; j < b.N; j++ {
 		b.StopTimer()
 		b.StartTimer()
-		BufLinjeTeller()
+		LinjeTeller()
 	}
 }
 
