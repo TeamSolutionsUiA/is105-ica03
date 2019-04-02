@@ -20,6 +20,7 @@ func main() {
 	hexString := pipe.GetHex(fileString)
 	hexSlice := hexString[:100]
 	hexLength := fmt.Sprintf("%d", len(hexString))
+	fmt.Println("Ukomprimert test:")
 	fmt.Println("Content (first 10 bytes): " + hexSlice[0:20] + "\n" +
 		"Length: " + hexLength)
 
@@ -27,6 +28,7 @@ func main() {
 	base64String := pipe.GetBase64(fileString)
 	base64Slice := base64String[:100]
 	base64Length := fmt.Sprintf("%d", len(base64String))
+	fmt.Println("base64 test:")
 	fmt.Println("Content (first 10 bytes): " + base64Slice[0:20] + "\n" +
 		"Length: " + base64Length)
 
@@ -34,6 +36,7 @@ func main() {
 	gzipString := pipe.GetGzipped(fileString)
 	gzipSlice := gzipString[:100]
 	gzipLength := fmt.Sprintf("%d", len(gzipString))
+	fmt.Println("Gzip test:")
 	fmt.Println("Content (first 10 bytes): " + gzipSlice[0:20] + "\n" +
 		"Length: " + gzipLength)
 }
