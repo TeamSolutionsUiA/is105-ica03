@@ -10,6 +10,7 @@ import (
 func GetGzipped(expression string) string {
 
 	returnString := GetBase64(expression)
+
 	// https://stackoverflow.com/questions/19197874/how-can-i-use-gzip-on-a-string-in-golang
 	var b bytes.Buffer
 	gz := gzip.NewWriter(&b)
@@ -23,8 +24,6 @@ func GetGzipped(expression string) string {
 		log.Fatal(err)
 
 	}
-	//returnString = fmt.Sprintf("%X", gz.Header)
 	returnString = fmt.Sprintf("%X", b)
 	return returnString
-
 }
